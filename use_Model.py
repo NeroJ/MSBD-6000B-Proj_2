@@ -29,7 +29,7 @@ use_gpu = torch.cuda.is_available()
 inputs = next(iter(dataloaders['test.txt']))
 
 # Make a grid from batch
-def train_model(model, file):
+def test_model(model, file):
     since = time.time()
     model.train(False)
     for data in dataloaders['test']:
@@ -49,6 +49,6 @@ def restore_cnn():
         cnn2 = torch.load('cnn1.pkl')
         if use_gpu:
             cnn2 = cnn2.cuda()
-        train_model(cnn2, w_file)
+        test_model(cnn2, w_file)
         w_file.close()
 restore_cnn()
